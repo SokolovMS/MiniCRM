@@ -9,8 +9,8 @@ namespace MiniCRM.Model
     public class Client
     {
         public string Name { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
+        public string Phone { get; private set; }
+        public string Email { get; private set; }
         public string CompanyName { get; set; }
 
         public Client(string Name, string Phone, string Email, string CompanyName)
@@ -19,6 +19,23 @@ namespace MiniCRM.Model
             this.Phone = Phone;
             this.Email = Email;
             this.CompanyName = CompanyName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            Client cl = (Client)obj;
+            if (cl == null) return false;
+
+            return
+                Name == cl.Name &&
+                Phone == cl.Phone &&
+                Email == cl.Email &&
+                CompanyName == cl.CompanyName;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

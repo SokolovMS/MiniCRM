@@ -5,14 +5,14 @@ namespace MiniCRM.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        readonly ClientRepository _clientRepository;
+        private ClientRepository _clientRepository = new ClientRepository();
+        private StatusesRepository _statusesRepository = new StatusesRepository();
+        private ProjectRepository _projectRepository = new ProjectRepository();
 
-        ObservableCollection<ViewModelBase> _viewModels;
+        private ObservableCollection<ViewModelBase> _viewModels = new ObservableCollection<ViewModelBase>();
 
         public MainWindowViewModel()
         {
-            _clientRepository = new ClientRepository();
-
             ClientListViewModel clientViewModel = new ClientListViewModel(_clientRepository);
             this.ViewModels.Add(clientViewModel);
         }
@@ -21,10 +21,6 @@ namespace MiniCRM.ViewModel
         {
             get
             {
-                if (_viewModels == null)
-                {
-                    _viewModels = new ObservableCollection<ViewModelBase>();
-                }
                 return _viewModels;
             }
         }
