@@ -24,8 +24,8 @@ namespace MiniCRM.Model
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
+            if (!(obj is Client)) return false;
             Client cl = (Client)obj;
-            if (cl == null) return false;
 
             return
                 Name == cl.Name &&

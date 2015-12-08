@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniCRM.Model
 {
-    class Project
+    public class Project
     {
         public enum Type
         {
@@ -43,8 +43,8 @@ namespace MiniCRM.Model
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
+            if (!(obj is Project)) return false;
             Project pr = (Project)obj;
-            if (pr == null) return false;
 
             return
                 name == pr.name &&
