@@ -17,5 +17,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <Button Content="Button" Width="120" Command="{Binding InvasionCommand}" />
     </StackPanel>
 </UserControl>

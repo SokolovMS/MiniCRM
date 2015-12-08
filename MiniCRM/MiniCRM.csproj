@@ -60,6 +60,7 @@
     <Compile Include="Repository\ProjectRepository.cs" />
     <Compile Include="Repository\StatusesRepository.cs" />
     <Compile Include="ViewModel\ClientListViewModel.cs" />
+    <Compile Include="ViewModel\Commands\RelayCommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ClientListView.xaml.cs">

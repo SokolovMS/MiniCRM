@@ -15,7 +15,7 @@
     </Window.Resources>
     
     <Grid Margin="10">
-        <Border Background="BlueViolet">
+        <Border Background="Gray">
             <ItemsControl ItemsSource="{Binding ViewModels}" Margin="4" />
         </Border>
     </Grid>
