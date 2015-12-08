@@ -15,10 +15,19 @@ namespace MiniCRMTest.Model
         private DateTime dDateTime2 = new DateTime(2015, 12, 12);
 
         [TestMethod]
-        public void Project_Equals_Successful()
+        public void Project_Equals_SuccessfulWithDateTime()
         {
             Project p1 = new Project(dName, dStatus, dClient1, dDateTime1);
             Project p2 = new Project(dName, dStatus, dClient1, dDateTime1);
+
+            Assert.IsTrue(p1.Equals(p2));
+        }
+
+        [TestMethod]
+        public void Project_Equals_SuccessfulWithoutDateTime()
+        {
+            Project p1 = new Project(dName, dStatus, dClient1);
+            Project p2 = new Project(dName, dStatus, dClient1);
 
             Assert.IsTrue(p1.Equals(p2));
         }
@@ -73,6 +82,15 @@ namespace MiniCRMTest.Model
         {
             Project p1 = new Project(dName, dStatus, dClient1, dDateTime1);
             Project p2 = new Project(dName, dStatus, dClient1, dDateTime2);
+
+            Assert.IsFalse(p1.Equals(p2));
+        }
+
+        [TestMethod]
+        public void Project_Equals_WithoutDateTime()
+        {
+            Project p1 = new Project(dName, dStatus, dClient1, dDateTime1);
+            Project p2 = new Project(dName, dStatus, dClient1);
 
             Assert.IsFalse(p1.Equals(p2));
         }
