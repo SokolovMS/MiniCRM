@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiniCRM"
-        mc:Ignorable="d"
+        xmlns:vm="clr-namespace:MiniCRM.ViewModel"
+        xmlns:vw="clr-namespace:MiniCRM.View"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:ClientListViewModel}">
+            <vw:ClientListView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid Margin="10">
+        <Border Background="BlueViolet">
+            <ItemsControl ItemsSource="{Binding ViewModels}" Margin="4" />
+        </Border>
     </Grid>
 </Window>
