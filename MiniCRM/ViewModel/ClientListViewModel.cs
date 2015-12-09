@@ -6,38 +6,33 @@ using System.Windows.Input;
 
 namespace MiniCRM.ViewModel
 {
-    public class ClientListViewModel : ViewModelBase
+    class ClientListViewModel : ViewModelBase
     {
-        readonly ClientRepository _clientRepository;
+        private ClientRepository _clientRepository;
+        private ProjectRepository _projectRepository;
+        private StatusesRepository _statusesRepository;
 
-        private ObservableCollection<Model.Client> _AllClients;
-        public ObservableCollection<Model.Client> AllClients
-        {
-            get
-            {
-                return _AllClients;
-            }
-            private set
-            {
-                _AllClients = value;
-            }
-        }
+        public ObservableCollection<Client> AllClients { get; private set; }
+        public ObservableCollection<Project> AllProjects { get; private set; }
+        public ObservableCollection<string> AllStatuses { get; private set; }
 
-        public ClientListViewModel(ClientRepository clientRepository)
+        public ClientListViewModel(ClientRepository _clientRepository, ProjectRepository _projectRepository, StatusesRepository _statusesRepository)
         {
-            if (clientRepository == null)
-            {
-                throw new ArgumentNullException("clientRepository == null");
-            }
-            _clientRepository = clientRepository;
-            this.AllClients = new ObservableCollection<Model.Client>(_clientRepository.GetClients());
+            this._clientRepository = _clientRepository;
+            this._projectRepository = _projectRepository;
+            this._statusesRepository = _statusesRepository;
+
+            AllClients = new ObservableCollection<Client>(_clientRepository.GetClients());
+            AllProjects = new ObservableCollection<Project>(_projectRepository.GetProjects());
+            AllStatuses = new ObservableCollection<string>(_statusesRepository.GetStatuses());
         }
 
         protected override void OnDispose()
         {
-            this.AllClients.Clear();
+            AllClients.Clear();
+            AllProjects.Clear();
+            AllStatuses.Clear();
         }
-
 
         RelayCommand _invasionCommand;
         public ICommand InvasionCommand

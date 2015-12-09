@@ -28,10 +28,10 @@ namespace MiniCRM.Model
             Client cl = (Client)obj;
 
             return
-                Name == cl.Name &&
-                Phone == cl.Phone &&
-                Email == cl.Email &&
-                CompanyName == cl.CompanyName;
+                Name.Equals(cl.Name) &&
+                Phone.Equals(cl.Phone) &&
+                Email.Equals(cl.Email) &&
+                CompanyName.Equals(cl.CompanyName);
         }
         public override int GetHashCode()
         {

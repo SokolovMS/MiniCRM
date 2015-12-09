@@ -14,9 +14,9 @@ namespace MiniCRM.Model
             WithEndDate
         }
 
-        public string name { get; private set; }
+        public string name { get; set; }
         public string status { get; set; }
-        public Client client { get; private set; }
+        public Client client { get; set; }
 
         private Type type { get; set; }
         private DateTime endDateTime { get; set; }
@@ -47,11 +47,11 @@ namespace MiniCRM.Model
             Project pr = (Project)obj;
 
             return
-                name == pr.name &&
-                status == pr.status &&
-                client == pr.client &&
-                type == pr.type &&
-                endDateTime == pr.endDateTime;
+                name.Equals(pr.name) &&
+                status.Equals(pr.status) &&
+                client.Equals(pr.client) &&
+                type.Equals(pr.type) &&
+                endDateTime.Equals(pr.endDateTime);
         }
         public override int GetHashCode()
         {
