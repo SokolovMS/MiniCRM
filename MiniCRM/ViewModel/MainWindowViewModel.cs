@@ -13,10 +13,7 @@ namespace MiniCRM.ViewModel
 
         public MainWindowViewModel()
         {
-            ClientListViewModel clientViewModel = new ClientListViewModel(_clientRepository, _projectRepository, _statusesRepository);
-            ProjectListViewModel projectListViewModel = new ProjectListViewModel(_clientRepository, _projectRepository, _statusesRepository);
-
-            this.ViewModels.Add(clientViewModel);
+            ClientProjectViewModel projectListViewModel = new ClientProjectViewModel(_clientRepository, _projectRepository, _statusesRepository);
             this.ViewModels.Add(projectListViewModel);
         }
 

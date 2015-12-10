@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace MiniCRM.ViewModel
 {
-    class ProjectListViewModel : ViewModelBase
+    class ClientProjectViewModel : ViewModelBase
     {
         private ClientRepository _clientRepository;
         private ProjectRepository _projectRepository;
@@ -20,7 +20,7 @@ namespace MiniCRM.ViewModel
         public ObservableCollection<Project> AllProjects { get; private set; }
         public ObservableCollection<string> AllStatuses { get; private set; }
 
-        public ProjectListViewModel(ClientRepository _clientRepository, ProjectRepository _projectRepository, StatusesRepository _statusesRepository)
+        public ClientProjectViewModel(ClientRepository _clientRepository, ProjectRepository _projectRepository, StatusesRepository _statusesRepository)
         {
             this._clientRepository = _clientRepository;
             this._projectRepository = _projectRepository;
@@ -37,8 +37,37 @@ namespace MiniCRM.ViewModel
             AllProjects.Clear();
             AllStatuses.Clear();
         }
-        
-        private Project testProject = new Project("123", "123", new Client("name123", "phone123", "email123", "123"));
+
+        private static Client testClient = new Client("name123", "phone123", "email123", "123");
+        private static Project testProject = new Project("123", "123", testClient);
+
+        #region 
+        RelayCommand _addClientCommand;
+        public ICommand AddClientCommand
+        {
+            get
+            {
+                if (_addClientCommand == null)
+                {
+                    _addClientCommand = new RelayCommand(p => this.AddClientCommandExecute(), p => this.AddClientCommandCanExecute);
+                }
+                return _addClientCommand;
+            }
+        }
+        void AddClientCommandExecute()
+        {
+            Client cl = new Client("1", "2", "3", "4");
+            _clientRepository.Add(cl);
+            AllClients.Insert(AllClients.Count - 1, cl);
+        }
+        bool AddClientCommandCanExecute
+        {
+            get
+            {
+                return AllClients.Count.Equals(0) ? false : true;
+            }
+        }
+        #endregion
 
         #region Add project
         RelayCommand _addProjectCommand;
@@ -86,6 +115,34 @@ namespace MiniCRM.ViewModel
             AllProjects.Remove(testProject);
         }
         bool RemoveProjectCommandCanExecute
+        {
+            get
+            {
+                return AllProjects.Count.Equals(0) ? false : true;
+            }
+        }
+        #endregion
+
+        #region Invoice projects
+        RelayCommand _invoiceProjectsCommand;
+        public ICommand InvoiceProjectsCommand
+        {
+            get
+            {
+                if (_invoiceProjectsCommand == null)
+                {
+                    _invoiceProjectsCommand = new RelayCommand(p => this.InvoiceProjectsCommandExecute(), p => this.InvoiceProjectsCommandCanExecute);
+                }
+                return _invoiceProjectsCommand;
+            }
+        }
+        void InvoiceProjectsCommandExecute()
+        {
+            _projectRepository.invoiceProjects(new DateTime(2015, 12, 31));
+            _projectRepository.invoiceProjects(new DateTime(2015, 12, 12));
+            _projectRepository.invoiceProjects(new DateTime(2015, 12, 13));
+        }
+        bool InvoiceProjectsCommandCanExecute
         {
             get
             {

@@ -55,20 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BillNumber.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\ProjectRepository.cs" />
     <Compile Include="Repository\StatusesRepository.cs" />
-    <Compile Include="ViewModel\ClientListViewModel.cs" />
     <Compile Include="ViewModel\Commands\RelayCommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\ProjectListViewModel.cs" />
+    <Compile Include="ViewModel\ClientProjectViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\ClientListView.xaml.cs">
-      <DependentUpon>ClientListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ProjectListView.xaml.cs">
-      <DependentUpon>ProjectListView.xaml</DependentUpon>
+    <Compile Include="View\ClientProjectListView.xaml.cs">
+      <DependentUpon>ClientProjectListView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -82,11 +79,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ClientListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ProjectListView.xaml">
+    <Page Include="View\ClientProjectListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,6 +22,11 @@ namespace MiniCRM.Repository
             Remove(new Client("del", "del", "del", "del"));
         }
 
+        public void Set(List<Client> list)
+        {
+            _clients = list;
+        }
+
         public List<Client> GetClients()
         {
             return new List<Client>(_clients);

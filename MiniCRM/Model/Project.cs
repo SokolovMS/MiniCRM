@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace MiniCRM.Model
 {
     public class Project
     {
-        public enum Type
+        private enum Type
         {
             WithoutEndDate,
             WithEndDate
@@ -56,6 +57,38 @@ namespace MiniCRM.Model
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        // Выставление счёта
+        public void InvoiceProject(DateTime invoiceDate)
+        {
+            string invoice = InvoiceAsString(invoiceDate);
+
+            if (invoice.Equals(""))
+                return;
+
+            string filename = BillNumber.GetCurrent() + ".txt";
+            File.WriteAllText(filename, invoice);
+            BillNumber.Next();
+        }
+        public string InvoiceAsString(DateTime invoiceDate)
+        {
+            if (type.Equals(Type.WithEndDate) && !endDateTime.Equals(invoiceDate))
+                return "";
+            if (type.Equals(Type.WithoutEndDate) &&
+                !invoiceDate.Day.Equals(DateTime.DaysInMonth(endDateTime.Year, endDateTime.Month)))
+                return "";
+
+            return GetBillAsString(BillNumber.GetCurrent(), invoiceDate);
+        }
+
+        private string GetBillAsString(int billNumber, DateTime invoiceDate)
+        {
+            string res = "Имя клиента: " + client.Name + Environment.NewLine
+                + "Счёт номер: " + billNumber + Environment.NewLine
+                + "Дата выставления: " + invoiceDate + Environment.NewLine;
+
+            return res;
         }
     }
 }

@@ -6,13 +6,10 @@
         xmlns:local="clr-namespace:MiniCRM"
         xmlns:vm="clr-namespace:MiniCRM.ViewModel"
         xmlns:vw="clr-namespace:MiniCRM.View"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="500">
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:ClientListViewModel}">
-            <vw:ClientListView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:ProjectListViewModel}">
+        <DataTemplate DataType="{x:Type vm:ClientProjectViewModel}">
             <vw:ProjectListView/>
         </DataTemplate>
     </Window.Resources>

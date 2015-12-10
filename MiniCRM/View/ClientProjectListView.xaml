@@ -7,6 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
+        <ItemsControl ItemsSource="{Binding AllClients}">
+            <ItemsControl.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="100" Text="{Binding Name}"/>
+                        <TextBox Width="100" Text="{Binding CompanyName}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Content="Add client" Width="120" Command="{Binding AddClientCommand}" />
         <ItemsControl ItemsSource="{Binding AllProjects}">
             <ItemsControl.ItemTemplate >
                 <DataTemplate>
@@ -21,6 +32,9 @@
         <StackPanel Orientation="Horizontal">
             <Button Content="Add project" Width="120" Command="{Binding AddProjectCommand}" />
             <Button Content="Remove project" Width="120" Command="{Binding RemoveProjectCommand}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Invoice projects" Width="120" Command="{Binding InvoiceProjectsCommand}" />
         </StackPanel>
     </StackPanel>
 </UserControl>
